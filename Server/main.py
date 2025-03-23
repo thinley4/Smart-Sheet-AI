@@ -65,16 +65,41 @@ async def process_data(data: RequestData):
     # Generate PDF
     pdf_buffer = io.BytesIO()
     c = canvas.Canvas(pdf_buffer, pagesize=letter)
-    c.drawString(100, 750, f"Worksheet on {data.topic} (Grade {data.grade_level})")
-    
-    y_position = 730
-    for line in ai_msg.content.split("\n"):
-        if y_position < 50:  # Start a new page if needed
-            c.showPage()
-            y_position = 750
-        c.drawString(100, y_position, line)
-        y_position -= 20
+    width, height = letter  # Get page dimensions
 
+    c.setFont("Helvetica", 12)
+    c.drawString(100, height - 50, f"Worksheet on {data.topic} (Grade {data.grade_level})")
+
+    y_position = height - 70  # Start position below the title
+    text_object = c.beginText(100, y_position)
+    text_object.setFont("Helvetica", 12)
+
+    max_width = width - 150  # Right margin buffer
+
+    for line in ai_msg.content.split("\n"):
+        words = line.split()
+        current_line = ""
+        
+        for word in words:
+            test_line = current_line + " " + word if current_line else word
+            if c.stringWidth(test_line, "Helvetica", 12) < max_width:
+                current_line = test_line  # Add word if it fits
+            else:
+                text_object.textLine(current_line)  # Print current line
+                current_line = word  # Start new line
+
+        if current_line:
+            text_object.textLine(current_line)  # Print last part of the line
+
+        y_position -= 20
+        if y_position < 50:  # If near bottom, start a new page
+            c.drawText(text_object)
+            c.showPage()
+            y_position = height - 50
+            text_object = c.beginText(100, y_position)
+            text_object.setFont("Helvetica", 12)
+
+    c.drawText(text_object)  # Draw the last text content
     c.save()
     pdf_buffer.seek(0)
 
