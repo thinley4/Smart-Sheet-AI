@@ -5,7 +5,7 @@ import { TypeAnimation } from "react-type-animation";
 export function Text() {
   return (
     <>
-      <div style={{ fontSize: "1.5em", fontWeight: "bold" }}>Introducing</div>
+      <div style={{ fontSize: "1em", fontWeight: "bold" }}>Introducing</div>
       <TypeAnimation
         sequence={[
           "Smart",
@@ -21,7 +21,7 @@ export function Text() {
           "",
           500,
         ]}
-        style={{ fontSize: "1.5em", fontWeight: "bold" }}
+        style={{ fontSize: "1em", fontWeight: "bold" }}
         repeat={Infinity}
       />
     </>

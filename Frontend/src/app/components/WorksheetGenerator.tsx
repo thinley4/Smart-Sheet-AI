@@ -43,7 +43,7 @@ export default function WorksheetGenerator() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-6">
+    <div className="flex flex-col items-center justify-center p-6 pt-28">
       {/* Input Section */}
       <Card className="w-full max-w-2xl p-6 shadow-md bg-white rounded-2xl">
         <CardContent>

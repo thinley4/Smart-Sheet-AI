@@ -5,7 +5,7 @@ import { JSX, SVGProps } from "react";
 
 export default function Nav() {
   return (
-    <header className="flex h-20 w-full shrink-0 items-center px-4 md:px-6 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950">
+    <header className="z-50 fixed flex h-20 w-full shrink-0 items-center px-4 md:px-6 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950">
       <Sheet>
         <div className="flex justify-between w-full lg:hidden">
           <div className="flex items-center space-x-2">
@@ -20,13 +20,13 @@ export default function Nav() {
           </SheetTrigger>
         </div>
         <SheetContent side="left">
-          <Link href="#" className="mr-6 hidden lg:flex" prefetch={false}>
+          <Link href="/" className="mr-6 hidden lg:flex" prefetch={false}>
             <MountainIcon className="h-6 w-6" />
             <span className="sr-only">Acme Inc</span>
           </Link>
           <div className="grid gap-2 py-6 px-2">
             <Link
-              href="#"
+              href="/"
               className="flex w-full items-center py-2 text-lg font-semibold"
               prefetch={false}
             >
