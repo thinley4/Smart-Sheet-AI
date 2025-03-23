@@ -14,6 +14,11 @@ export default function WorksheetGenerator() {
   const generateWorksheet = async () => {
     setLoading(true);
     setPdfUrl(null);
+    if(topic === "" || grade === "") {
+      alert("Please fill in all fields");
+      setLoading(false);
+      return;
+    }
     try {
       const response = await fetch("http://0.0.0.0:8880/process", {
         method: "POST",
@@ -38,7 +43,7 @@ export default function WorksheetGenerator() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center bg-gray-100 min-h-screen p-6">
+    <div className="flex flex-col items-center justify-center p-6">
       {/* Input Section */}
       <Card className="w-full max-w-2xl p-6 shadow-md bg-white rounded-2xl">
         <CardContent>
