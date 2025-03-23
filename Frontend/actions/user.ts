@@ -2,7 +2,7 @@
 
 export const generateWorksheet = async (topic: string, grade: string) => {
     try {
-        const response = await fetch('http://0.0.0.0:8880/process', {
+        const response = await fetch('https://test-fastapi-ssai.onrender.com/process', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
