@@ -29,6 +29,10 @@ class RequestData(BaseModel):
 
 key = os.getenv("key")
 
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
+
 @app.post("/process")
 async def process_data(data: RequestData):
     llm = ChatGoogleGenerativeAI(
