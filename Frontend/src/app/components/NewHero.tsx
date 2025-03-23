@@ -18,7 +18,7 @@ export function NewHero() {
             Try SSAI <ArrowUpRight className="w-5 h-5" />
         </Link>
       </div>
-      <p className="max-w-xl mx-auto text-sm md:text-lg text-neutral-700 dark:text-neutral-400 text-center">
+      <p className="max-w-xl mx-auto pt-6 text-sm md:text-lg text-neutral-700 dark:text-neutral-400 text-center">
         This AI-powered web application is designed to help teachers create
         high-quality, ready-to-use worksheets for students across various
         subjects and grade levels. By leveraging AI, the platform automates
