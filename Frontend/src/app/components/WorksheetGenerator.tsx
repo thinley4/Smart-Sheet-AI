@@ -18,16 +18,32 @@ export default function WorksheetGenerator() {
 
   const downloadPDF = () => {
     if (!worksheetMarkdown) return;
-
+  
     const doc = new jsPDF();
     const marginLeft = 10;
     const marginTop = 10;
     const maxWidth = 180;
-
+    const lineHeight = 10;
+  
     doc.setFont("helvetica", "normal");
-    doc.text(worksheetMarkdown, marginLeft, marginTop, { maxWidth });
+  
+    // Wrap text within maxWidth
+    const lines = doc.splitTextToSize(worksheetMarkdown, maxWidth);
+  
+    // Dynamically add text line by line to avoid truncation
+    let y = marginTop;
+    lines.forEach((line: string | string[]) => {
+      if (y > 280) { // Check if new page is needed (A4 size is 297mm)
+        doc.addPage();
+        y = marginTop; // Reset y for new page
+      }
+      doc.text(line, marginLeft, y);
+      y += lineHeight;
+    });
+  
     doc.save("worksheet.pdf");
   };
+  
 
   const generateWorksheet = async () => {
     setLoading(true);
