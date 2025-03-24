@@ -40,11 +40,14 @@ export default function WorksheetGenerator() {
     }
 
     try {
-      const response = await fetch("https://test-fastapi-ssai.onrender.com/process", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ topic, grade_level: parseInt(grade) }),
-      });
+      const response = await fetch(
+        "https://test-fastapi-ssai.onrender.com/process",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ topic, grade_level: parseInt(grade) }),
+        }
+      );
 
       if (!response.ok) throw new Error("Failed to generate worksheet");
 
@@ -84,7 +87,15 @@ export default function WorksheetGenerator() {
             <Input
               type="number"
               value={grade}
-              onChange={(e) => setGrade(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value; // Get the input as a string
+                if (
+                  value === "" ||
+                  (Number(value) >= 1 && Number(value) <= 15)
+                ) {
+                  setGrade(value); // Keep it as a string to avoid issues
+                }
+              }}
               placeholder="Enter grade level"
               className="mt-1 border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
             />
