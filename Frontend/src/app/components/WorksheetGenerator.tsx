@@ -91,7 +91,7 @@ export default function WorksheetGenerator() {
                 const value = e.target.value; // Get the input as a string
                 if (
                   value === "" ||
-                  (Number(value) >= 1 && Number(value) <= 15)
+                  (Number(value) >= 1 && Number(value) <= 12)
                 ) {
                   setGrade(value); // Keep it as a string to avoid issues
                 }
