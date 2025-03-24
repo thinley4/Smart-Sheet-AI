@@ -39,7 +39,7 @@ export default function WorksheetGenerator() {
     }
 
     try {
-      const response = await fetch("http://0.0.0.0:8880/process", {
+      const response = await fetch("https://test-fastapi-ssai.onrender.com/process", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ topic, grade_level: parseInt(grade) }),
