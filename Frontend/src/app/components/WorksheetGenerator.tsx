@@ -15,6 +15,8 @@ export default function WorksheetGenerator() {
     null
   );
   const pdfRef = useRef<HTMLDivElement>(null);
+  const api = process.env.NEXT_PUBLIC_API || "";
+  
 
   const downloadPDF = () => {
     if (!worksheetMarkdown) return;
@@ -57,7 +59,7 @@ export default function WorksheetGenerator() {
 
     try {
       const response = await fetch(
-        "https://test-fastapi-ssai.onrender.com/process",
+        api || "",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
